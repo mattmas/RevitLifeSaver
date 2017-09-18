@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="*" Name="LifeSaver for Revit" Language="1033" Version="0.9.0.0" Manufacturer="Team LifeSaver: BeyondAEC Hackathon" UpgradeCode="3e6ba890-7926-41db-b83f-0dfe40750673">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate EmbedCab="yes"/>
+
+    <Feature Id="Revit2017Install" Title="Revit 2017" Level="1">
+      <ComponentRef Id="Addin2017" />
+      <ComponentRef Id="LifeSaverDLL2017" />
+    </Feature>
+
+  </Product>
+
+  <!-- Directory Structure for install -->
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="CommonAppDataFolder" Name="ProgramData">
+        <Directory Id="AUTODESKFOLDER"  Name="Autodesk">
+          <Directory Id="REVITFOLDER" Name="Revit" >
+            <Directory Id="ADDINSFOLDER" Name="Addins">
+
+              <Directory Id="ADDINS2017" Name="2017">
+                <Directory Id="BUNDLEFOLDER2017" Name="LifeSaver" >
+
+                </Directory>
+              </Directory>
+
+            </Directory>
+          </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+  </Fragment>
+
+  <Fragment>
+
+    <DirectoryRef Id="ADDINS2017">
+      <Component Id="Addin2017" Guid="{A7922784-7666-4218-9217-3EDC01084B70}" DiskId="1">
+        <CreateFolder/>
+        <File Id="LifeSaver.addin2017" Name="LifeSaver.addin" Source="$(var.ProjectDir)LifeSaver.addin" Checksum="no"/>
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="BUNDLEFOLDER2017">
+      <Component Id="LifeSaverDLL2017" Guid="{1654C19B-85C7-4E54-8131-072D6864F712}" DiskId="1">
+        <CreateFolder/>
+        <RemoveFolder Id="LifeSaver2017" On="uninstall"/>
+        <File Id="LifeSaver.dll2017" Name="LifeSaver.dll" Source="$(var.ProjectDir)\..\LifeSaver\bin\Release\LifeSaver.dll" Checksum="no"/>
+      </Component>
+
+    </DirectoryRef>
+
+  </Fragment>
+
+</Wix>

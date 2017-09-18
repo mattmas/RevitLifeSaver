@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<RevitAddIns>
+
+<AddIn Type="Application">
+    <Name>Revit LifeSaver</Name>
+    <Assembly>.\LifeSaver\LifeSaver.dll</Assembly>
+    <AddInId>B12733C5-771A-4207-8C1B-891789513353</AddInId>
+    <FullClassName>LifeSaver.ExternalApp</FullClassName>
+    <VendorId>HACK</VendorId>
+    <VendorDescription>Team LifeSaver: BeyondAEC Hackathon, 9/2017</VendorDescription>
+  </AddIn>
+  
+
+</RevitAddIns>
